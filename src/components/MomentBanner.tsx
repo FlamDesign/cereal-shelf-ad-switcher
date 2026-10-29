@@ -15,7 +15,7 @@ import logo from "@/assets/hub/moment-maker-logo.png.asset.json";
 
 const C = "#E2231A";
 
-type Moment = { id: string; label: string; tilt: number; icon: ReactNode; src: string; srcMobile?: string; aspect: "16/9" | "1/1" };
+type Moment = { id: string; label: string; tilt: number; icon: ReactNode; src: string; aspect: "1/1" };
 
 const icons: Record<string, ReactNode> = {
   "after-practice": (
@@ -63,10 +63,10 @@ const icons: Record<string, ReactNode> = {
 
 // Replace the src paths with the real ad HTML files when ready (place them in /public/ads/).
 export const MOMENTS: Moment[] = [
-  { id: "after-practice", label: "After practice", tilt: -3, icon: icons["after-practice"], src: "/ads/after-practice.html", aspect: "16/9" },
-  { id: "around-the-table", label: "Around the table", tilt: 2, icon: icons["around-the-table"], src: "/ads/around-the-table.html", aspect: "16/9" },
-  { id: "at-the-park", label: "At the park", tilt: -2, icon: icons["at-the-park"], src: "/ads/at-the-park.html", aspect: "16/9" },
-  { id: "on-the-road", label: "On the road", tilt: 3, icon: icons["on-the-road"], src: "/ads/on-the-road.html", aspect: "16/9" },
+  { id: "after-practice", label: "After practice", tilt: -3, icon: icons["after-practice"], src: "/ads/after-practice.html", aspect: "1/1" },
+  { id: "around-the-table", label: "Around the table", tilt: 2, icon: icons["around-the-table"], src: "/ads/around-the-table.html", aspect: "1/1" },
+  { id: "at-the-park", label: "At the park", tilt: -2, icon: icons["at-the-park"], src: "/ads/at-the-park.html", aspect: "1/1" },
+  { id: "on-the-road", label: "On the road", tilt: 3, icon: icons["on-the-road"], src: "/ads/on-the-road.html", aspect: "1/1" },
 ];
 
 function Circle({ m, size }: { m: Moment; size: number }) {
@@ -188,39 +188,38 @@ function Desktop({ idx, auto, touched, cycle, pick }: S) {
     ro.observe(el);
     return () => ro.disconnect();
   }, []);
-  const H = 790;
+  const H = 760;
   const current = MOMENTS[idx]!;
   return (
     <div ref={wrap} style={{ width: "100%", height: H * scale, overflow: "hidden", borderRadius: 8 }}>
       <div style={{ position: "relative", width: 1550, height: H, overflow: "hidden", background: "#2F5A1E", fontFamily: FONT, color: "#00463C", transform: `scale(${scale})`, transformOrigin: "top left" }}>
         <img src={bg.url} alt="" style={{ position: "absolute", inset: 0, width: 1550, height: H, objectFit: "cover" }} />
         <div style={{ position: "absolute", inset: 0, background: "rgba(0,40,20,.35)" }} />
-        {/* lights drape behind logo, bunting top-right */}
         <img src={a1.url} alt="" style={{ position: "absolute", left: -120, top: -200, width: 640, transform: "rotate(-10deg)", filter: shadow }} />
-        <img src={a2.url} alt="" style={{ position: "absolute", right: -110, top: -140, width: 620, transform: "rotate(6deg)", filter: shadow }} />
-        <img src={a3.url} alt="" style={{ position: "absolute", left: -110, bottom: -170, width: 300, transform: "rotate(-90deg)", filter: shadow }} />
-        <img src={a4.url} alt="" style={{ position: "absolute", right: 30, bottom: 30, width: 210, transform: "rotate(-16deg)", filter: shadow }} />
-        <img src={a5.url} alt="" style={{ position: "absolute", left: 60, top: 400, width: 38, transform: "rotate(-12deg)" }} />
-        <img src={a6.url} alt="" style={{ position: "absolute", left: 140, bottom: 140, width: 34, transform: "rotate(18deg)" }} />
-        <img src={a7.url} alt="" style={{ position: "absolute", right: 70, top: 380, width: 42, transform: "rotate(-20deg)" }} />
-        <img src={a8.url} alt="" style={{ position: "absolute", left: 1290, bottom: 40, width: 34, transform: "rotate(10deg)" }} />
+        <img src={a2.url} alt="" style={{ position: "absolute", left: 1010, top: -175, width: 480, transform: "rotate(4deg)", filter: shadow }} />
+        <img src={a3.url} alt="" style={{ position: "absolute", left: -150, bottom: -200, width: 300, transform: "rotate(-90deg)", filter: shadow }} />
+        <img src={a4.url} alt="" style={{ position: "absolute", left: 600, bottom: 50, width: 190, transform: "rotate(-16deg)", filter: shadow }} />
+        <img src={a5.url} alt="" style={{ position: "absolute", left: 640, top: 120, width: 40, transform: "rotate(-12deg)" }} />
+        <img src={a6.url} alt="" style={{ position: "absolute", left: 740, top: 330, width: 36, transform: "rotate(18deg)" }} />
+        <img src={a7.url} alt="" style={{ position: "absolute", left: 620, top: 470, width: 42, transform: "rotate(-20deg)" }} />
+        <img src={a8.url} alt="" style={{ position: "absolute", left: 790, top: 40, width: 34, transform: "rotate(10deg)" }} />
 
         <img src={logo.url} alt="The Moment Maker" style={{ position: "absolute", left: -36, top: -44, width: 400, height: 400, transform: "rotate(-10deg)", filter: logoShadow, zIndex: 3 }} />
+        {!touched && <div style={{ position: "absolute", left: 385, top: 200, zIndex: 4 }}><Hint /></div>}
 
-        <nav aria-label="Pick your moment" style={{ position: "absolute", left: 410, top: 16, width: 900, height: 180, display: "grid", gridTemplateColumns: "repeat(4,minmax(0,1fr))", gap: 20, alignItems: "center", zIndex: 4 }}>
+        <nav aria-label="Pick your moment" style={{ position: "absolute", left: 30, top: 350, width: 530, height: 390, display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gridTemplateRows: "repeat(2,1fr)", gap: 10, alignItems: "center", justifyItems: "center", zIndex: 4 }}>
           {MOMENTS.map((m, i) => {
             const on = i === idx;
             return (
               <button key={m.id} className="mm-btn" onClick={() => pick(i)} aria-pressed={on} aria-label={m.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", fontFamily: FONT, opacity: on ? 1 : 0.9 }}>
-                <Plate m={m} size={on ? 116 : 84} on={on} auto={auto} cycle={cycle} />
-                <Label m={m} on={on} fs={on ? 18 : 14} />
+                <Plate m={m} size={on ? 124 : 104} on={on} auto={auto} cycle={cycle} />
+                <Label m={m} on={on} fs={on ? 18 : 15} />
               </button>
             );
           })}
         </nav>
-        {!touched && <div style={{ position: "absolute", left: 1330, top: 88, zIndex: 4 }}><Hint /></div>}
 
-        <div style={{ position: "absolute", left: 420, top: 226, width: 880, height: 495, background: "#d9d9d9", borderRadius: 8, overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,.5)", zIndex: 4 }}>
+        <div style={{ position: "absolute", left: 850, top: 60, width: 640, height: 640, background: "#000", borderRadius: 8, overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,.5)", zIndex: 5 }}>
           <iframe key={current.id} src={current.src} title={current.label} style={{ width: "100%", height: "100%", border: 0 }} allow="autoplay; fullscreen" />
         </div>
       </div>
@@ -230,8 +229,6 @@ function Desktop({ idx, auto, touched, cycle, pick }: S) {
 
 function Mobile({ idx, auto, touched, cycle, pick }: S) {
   const current = MOMENTS[idx]!;
-  const src = current.srcMobile ?? current.src;
-  const aspect = current.srcMobile ? "1/1" : current.aspect;
   return (
     <section style={{ position: "relative", width: "100%", overflow: "hidden", background: "#2F5A1E", fontFamily: FONT, color: "#00463C" }}>
       <img src={bg.url} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
@@ -243,8 +240,8 @@ function Mobile({ idx, auto, touched, cycle, pick }: S) {
         {!touched && <div style={{ position: "absolute", right: 12, bottom: 10, zIndex: 4 }}><Hint /></div>}
       </div>
       <div style={{ position: "relative", zIndex: 2, padding: "0 12px" }}>
-        <div style={{ width: "100%", aspectRatio: aspect, background: "#d9d9d9", borderRadius: 8, overflow: "hidden", boxShadow: "0 12px 30px rgba(0,0,0,.5)" }}>
-          <iframe key={current.id} src={src} title={current.label} style={{ width: "100%", height: "100%", border: 0 }} allow="autoplay; fullscreen" />
+        <div style={{ width: "100%", aspectRatio: "1/1", background: "#000", borderRadius: 8, overflow: "hidden", boxShadow: "0 12px 30px rgba(0,0,0,.5)" }}>
+          <iframe key={current.id} src={current.src} title={current.label} style={{ width: "100%", height: "100%", border: 0 }} allow="autoplay; fullscreen" />
         </div>
         <nav aria-label="Pick your moment" style={{ display: "grid", gridTemplateColumns: "repeat(2,minmax(0,1fr))", gap: "16px 8px", padding: "18px 0 22px" }}>
           {MOMENTS.map((m, i) => {
