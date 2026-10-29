@@ -1,7 +1,8 @@
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { FlickSlot } from "@/components/FlickSlot";
-import { nextMomentIndex } from "@/lib/moment-cycle";
+import { AUTO_ADVANCE_MS } from "@/lib/moment-cycle";
+import { useMomentPlayback } from "@/hooks/use-moment-playback";
 import bg from "@/assets/hub/picnic-portrait.png.asset.json";
 import font from "@/assets/hub/3a90540dc35e5382ba159fc56c774fd6.otf.asset.json";
 import logo from "@/assets/hub/moment-maker-logo.png.asset.json";
@@ -61,22 +62,27 @@ export const MOMENTS: Moment[] = [
 ];
 
 export function MomentBanner() {
-  const [idx, setIdx] = useState(0);
+  const { idx, cycle, pick, advance } = useMomentPlayback(MOMENTS.length);
   const current = MOMENTS[idx];
   if (!current) return null;
   return (
     <>
-      <style>{`@font-face{font-family:"Brandon Printed Two";src:url("${font.url}") format("opentype");font-display:swap}`}</style>
+      <style>{`@font-face{font-family:"Brandon Printed Two";src:url("${font.url}") format("opentype");font-display:swap}.moment-progress-fill{animation-duration:${AUTO_ADVANCE_MS}ms}`}</style>
       <section className="moment-frame" aria-label="The Moment Maker" style={{ backgroundImage: `url("${bg.url}")` }}>
-        <FlickSlot src={current.src} title={current.label}
+        <FlickSlot key={cycle} src={current.src} title={current.label}
           {...(current.videoSrc ? { videoSrc: current.videoSrc } : {})}
-          onEnded={() => setIdx((i) => nextMomentIndex(i, MOMENTS.length))} />
+          onEnded={advance} />
         <img className="moment-badge" src={logo.url} alt="The moment Maker" />
         <nav className="moment-nav" aria-label="Pick your moment">
           {MOMENTS.map((m, i) => (
             <Button key={m.id} variant="ghost" className="moment-button" aria-pressed={i === idx}
-              aria-label={m.label} onClick={() => setIdx(i)}>
-              <span className="moment-plate-wrap"><span className="moment-plate">
+              aria-label={m.label} onClick={() => pick(i)}>
+              <span className="moment-plate-wrap">
+                {i === idx && <svg key={cycle} className="moment-progress" viewBox="0 0 100 100" aria-hidden="true">
+                  <circle className="moment-progress-track" cx="50" cy="50" r="47" />
+                  <circle className="moment-progress-fill" cx="50" cy="50" r="47" pathLength="100" />
+                </svg>}
+                <span className="moment-plate">
                 <svg className="moment-icon" viewBox="0 0 64 64" aria-hidden="true">{m.icon}</svg>
                 <span className="moment-label">{m.label}</span>
               </span></span>

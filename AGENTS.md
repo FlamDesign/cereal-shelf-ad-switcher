@@ -10,4 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Render the Moment Maker module as one responsive portrait composition at all widths; a single layout prevents desktop/mobile drift.
-- Keep playback in a dedicated FlickSlot component and cycle on media completion, not a timer, so each selected video finishes before advancing.
+- Keep playback in FlickSlot and scheduling in a shared hook; use native media completion when available with a resettable timer fallback for cross-origin embeds, clearing scheduled work on selection changes and unmount.
