@@ -18,23 +18,23 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type P = { name: string; price: string; was?: string; unit?: string; options?: string; badge?: "Rollback" | "Best seller"; color: string; label: string; btn?: "Options" };
+type P = { img: string; name: string; price: string; was?: string; unit?: string; options?: string; badge?: "Rollback" | "Best seller"; color: string; label: string; btn?: "Options" };
 
 const flavor: P[] = [
-  { name: "Cinnamon Toast Crunch Cereal, Root Beer Float Flavored, Limited Edition, 18.8 oz", price: "14.49", options: "3 options", color: "#1f4fa8", label: "CINNAMON TOAST" },
-  { name: "Birthday Cake Cheerios Breakfast Cereal, Gluten Free, Family Size, 19 oz", price: "11.98", options: "2 options", color: "#2a5bc0", label: "CHEERIOS" },
-  { name: "Betty Crocker Super Moist Delights Cake Mix, America's Birthday Cake, 13.25 oz", price: "12.63", options: "2 options", color: "#c8202f", label: "CAKE MIX" },
-  { name: "Totino's Pizza Rolls, Cheeseburger Flavored, Frozen Appetizers, 50 Rolls, 24.46 oz", price: "5.47", unit: "10.9 ¢/count", color: "#e2231a", label: "PIZZA ROLLS" },
-  { name: "Pillsbury Premade Refrigerated Pie Crust, Two Pie Crusts, 14.1 oz", price: "3.82", was: "$4.68", unit: "27.1 ¢/oz", badge: "Rollback", color: "#b8442a", label: "PIE CRUSTS" },
-  { name: "Gold Medal All Purpose Flour, Baking Flour, 5 lb Bag", price: "3.97", options: "2 options", badge: "Best seller", color: "#f2efe6", label: "FLOUR" },
+  { img: "https://i5.walmartimages.com/seo/Cinnamon-Toast-Crunch-Cereal-Root-Beer-Float-Flavored-Limited-Edition-18-8-oz_f898260e-233a-47c4-85cf-64f1ed49a70f.770dfed9093f8e685b74557010599bc7.jpeg?odnHeight=480&odnWidth=480", name: "Cinnamon Toast Crunch Cereal, Root Beer Float Flavored, Limited Edition, 18.8 oz", price: "14.49", options: "3 options", color: "#1f4fa8", label: "CINNAMON TOAST" },
+  { img: "https://i5.walmartimages.com/seo/Birthday-Cake-Cheerios-Breakfast-Cereal-Family-Size_bad36dcb-3282-4a00-beea-069fae3960de.d8332a21ad7cfbcc351269756cf022bc.jpeg?odnHeight=480&odnWidth=480", name: "Birthday Cake Cheerios Breakfast Cereal, Gluten Free, Family Size, 19 oz", price: "11.98", options: "2 options", color: "#2a5bc0", label: "CHEERIOS" },
+  { img: "https://i5.walmartimages.com/seo/Betty-Crocker-Super-Moist-Red-White-and-Blue-Cake-Mix_c004f182-d8e3-4fba-b991-bb7b282765ad.1c0ce41606314bed4d03919f70d087eb.jpeg?odnHeight=480&odnWidth=480", name: "Betty Crocker Super Moist Delights Cake Mix, America's Birthday Cake, 13.25 oz", price: "12.63", options: "2 options", color: "#c8202f", label: "CAKE MIX" },
+  { img: "https://i5.walmartimages.com/asr/a186e7c0-3d0c-46e7-9748-710358271094.b1fec83a85dac87f65810d61a5b2bb51.jpeg?odnHeight=480&odnWidth=480", name: "Totino's Pizza Rolls, Cheeseburger Flavored, Frozen Appetizers, 50 Rolls, 24.46 oz", price: "5.47", unit: "10.9 ¢/count", color: "#e2231a", label: "PIZZA ROLLS" },
+  { img: "https://i5.walmartimages.com/asr/0b30d0e3-c4a9-4b88-ae00-1ab666cf7c3f.bd0f73637ce1a5192fa33591ab3834b6.jpeg?odnHeight=480&odnWidth=480", name: "Pillsbury Premade Refrigerated Pie Crust, Two Pie Crusts, 14.1 oz", price: "3.82", was: "$4.68", unit: "27.1 ¢/oz", badge: "Rollback", color: "#b8442a", label: "PIE CRUSTS" },
+  { img: "https://i5.walmartimages.com/seo/Gold-Medal-All-Purpose-Flour-Baking-Flour-5-lb-Bag_3fe5aa54-ec57-4d77-bb3b-afceae95f001.a1f164b861e7f82d7dacda733004b191.jpeg?odnHeight=480&odnWidth=480", name: "Gold Medal All Purpose Flour, Baking Flour, 5 lb Bag", price: "3.97", options: "2 options", badge: "Best seller", color: "#f2efe6", label: "FLOUR" },
 ];
 const celebrate: P[] = [
-  { name: "Cheerios, Heart Healthy Gluten Free Breakfast Cereal, Family Size, 18 oz", price: "4.97", options: "13 options", badge: "Best seller", color: "#f6c21c", label: "CHEERIOS", btn: "Options" },
-  { name: "Cocoa Puffs, Chocolate Breakfast Cereal with Whole Grains, Family Size, 18.1 oz", price: "4.97", options: "4 options", badge: "Best seller", color: "#5a3420", label: "COCOA PUFFS", btn: "Options" },
-  { name: "Nature Valley Sweet and Salty Nut Granola Bars, Peanut, 15 Bars, 18 oz", price: "6.97", options: "2 options", badge: "Best seller", color: "#e88a1a", label: "15 BARS" },
-  { name: "Pillsbury Cinnamon Rolls, Original Icing, 16 Rolls, Value 2-Pack, 24.8 oz", price: "4.68", was: "$5.22", unit: "18.9 ¢/oz", badge: "Rollback", color: "#1d4fa0", label: "CINNAMON ROLLS" },
-  { name: "Pillsbury Crescent Rolls, Original Refrigerated Canned Pastry Dough, Value 2-Pack, 16 oz", price: "4.68", was: "$5.22", unit: "29.3 ¢/oz", badge: "Rollback", color: "#2a62b8", label: "CRESCENTS" },
-  { name: "Annie's Shells and White Cheddar, Made with Organic Pasta and Real Cheese, 6 oz", price: "1.48", was: "$6.12", options: "6 options", badge: "Best seller", color: "#6b3fa0", label: "SHELLS & CHEDDAR" },
+  { img: "https://i5.walmartimages.com/seo/Cheerios-Heart-Healthy-Cereal-Happy-Heart-Shapes-Family-Size-18-oz_3123917c-defd-447f-8e2a-9c92d902a297.b728dc444e3c44d6e62a96c2db50eb14.jpeg?odnHeight=480&odnWidth=480", name: "Cheerios, Heart Healthy Gluten Free Breakfast Cereal, Family Size, 18 oz", price: "4.97", options: "13 options", badge: "Best seller", color: "#f6c21c", label: "CHEERIOS", btn: "Options" },
+  { img: "https://i5.walmartimages.com/seo/Cocoa-Puffs-Chocolate-Breakfast-Cereal-with-Whole-Grains-18-1-oz_88159528-bfc3-442b-9d96-deb70196b83e.f0517b93bb4a016c991000ad30553945.jpeg?odnHeight=480&odnWidth=480", name: "Cocoa Puffs, Chocolate Breakfast Cereal with Whole Grains, Family Size, 18.1 oz", price: "4.97", options: "4 options", badge: "Best seller", color: "#5a3420", label: "COCOA PUFFS", btn: "Options" },
+  { img: "https://i5.walmartimages.com/seo/Nature-Valley-Granola-Bars-Sweet-and-Salty-Nut-Peanut-15-Bars-18-OZ_de429b92-357e-4765-ad26-c6b2c5a4b0e8.5bafc56f211465b4ffb3530091639a24.jpeg?odnHeight=480&odnWidth=480", name: "Nature Valley Sweet and Salty Nut Granola Bars, Peanut, 15 Bars, 18 oz", price: "6.97", options: "2 options", badge: "Best seller", color: "#e88a1a", label: "15 BARS" },
+  { img: "https://i5.walmartimages.com/asr/8ec61e36-da1c-4546-b957-69319007889b.7840b90bb070fb647dca447d604e384c.jpeg?odnHeight=480&odnWidth=480", name: "Pillsbury Cinnamon Rolls, Original Icing, 16 Rolls, Value 2-Pack, 24.8 oz", price: "4.68", was: "$5.22", unit: "18.9 ¢/oz", badge: "Rollback", color: "#1d4fa0", label: "CINNAMON ROLLS" },
+  { img: "https://i5.walmartimages.com/asr/edceb316-81fb-497b-b666-1876be53ef81.678bf40aaf5325cb2d3bceacf558a696.jpeg?odnHeight=480&odnWidth=480", name: "Pillsbury Crescent Rolls, Original Refrigerated Canned Pastry Dough, Value 2-Pack, 16 oz", price: "4.68", was: "$5.22", unit: "29.3 ¢/oz", badge: "Rollback", color: "#2a62b8", label: "CRESCENTS" },
+  { img: "https://i5.walmartimages.com/seo/Annie-s-Shells-and-White-Cheddar-Made-with-Organic-Pasta-and-Real-Cheese-6-oz_f047b38f-ecdf-47f8-9df2-acb57dea5622.d3086bf789f582686d5dadb05ba6a290.jpeg?odnHeight=480&odnWidth=480", name: "Annie's Shells and White Cheddar, Made with Organic Pasta and Real Cheese, 6 oz", price: "1.48", was: "$6.12", options: "6 options", badge: "Best seller", color: "#6b3fa0", label: "SHELLS & CHEDDAR" },
 ];
 
 const regions = [
@@ -84,9 +84,7 @@ function ProductCard({ p }: { p: P }) {
         )}
       </div>
       <div className="relative mt-2 flex aspect-square items-center justify-center">
-        <div className="flex h-[88%] w-[62%] items-center justify-center rounded-sm p-2 text-center shadow-lg" style={{ background: p.color }}>
-          <span className="text-lg font-black leading-tight" style={{ fontFamily: "Anton, sans-serif", color: p.color === "#f2efe6" ? NAVY : "#fff" }}>{p.label}</span>
-        </div>
+        <img src={p.img} alt={p.name} loading="lazy" className="h-full w-full object-contain" />
         <span className="absolute right-1 top-1 text-xl">♡</span>
       </div>
       <div className="mt-2 h-5 text-center text-xs text-gray-600">{p.options && `+ ${p.options}`}</div>
@@ -185,9 +183,9 @@ function Index() {
         </div>
 
         <Shelf title="Find your flavor" items={flavor} />
-        <Shelf title="Celebrate America's birthday" items={celebrate} />
-
         <MomentBanner />
+
+        <Shelf title="Celebrate America's birthday" items={celebrate} />
 
         {regions.map((r) => (
           <section key={r.title} className="space-y-6">
