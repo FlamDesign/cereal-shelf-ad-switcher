@@ -196,7 +196,7 @@ function Desktop({ idx, auto, touched, cycle, pick }: S) {
         <img src={bg.url} alt="" style={{ position: "absolute", inset: 0, width: 1550, height: H, objectFit: "cover" }} />
         <div style={{ position: "absolute", inset: 0, background: "rgba(0,40,20,.35)" }} />
         <img src={a1.url} alt="" style={{ position: "absolute", left: -120, top: -200, width: 640, transform: "rotate(-10deg)", filter: shadow }} />
-        <img src={a2.url} alt="" style={{ position: "absolute", left: 1010, top: -175, width: 480, transform: "rotate(4deg)", filter: shadow }} />
+        <img src={a2.url} alt="" style={{ position: "absolute", left: 900, top: -120, width: 560, transform: "rotate(2deg)", filter: shadow }} />
         <img src={a3.url} alt="" style={{ position: "absolute", left: -150, bottom: -200, width: 300, transform: "rotate(-90deg)", filter: shadow }} />
         <img src={a4.url} alt="" style={{ position: "absolute", left: 600, bottom: 50, width: 190, transform: "rotate(-16deg)", filter: shadow }} />
         <img src={a5.url} alt="" style={{ position: "absolute", left: 640, top: 120, width: 40, transform: "rotate(-12deg)" }} />
