@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MomentBanner } from "@/components/MomentBanner";
+import { WireframeBackground } from "@/components/WireframeBackground";
 
 const TITLE = "The Moment Maker – General Mills × Walmart (demo)";
 const DESC = "Four picnic moments from General Mills × Walmart in a portrait Moment Maker ad.";
@@ -20,10 +21,10 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="moment-page">
-      <div className="moment-page-inner">
+    <main>
+      <WireframeBackground>
         <MomentBanner />
-      </div>
+      </WireframeBackground>
     </main>
   );
 }
