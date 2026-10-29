@@ -142,3 +142,35 @@
     color: var(--color-foreground);
   }
 }
+
+:root {
+  --moment-red: #E2231A;
+  --moment-ink: #00463C;
+  --moment-cream: #FFF8EC;
+  --moment-plate: #FFFFFF;
+  --moment-rim: #ECE6DA;
+  --moment-black: #000000;
+  --moment-grass: #2F5A1E;
+  --moment-shadow: 0 4px 9px rgb(0 0 0 / 25%);
+  --moment-card-shadow: 0 6px 18px rgb(0 0 0 / 28%);
+}
+
+.moment-page { min-height: 100svh; padding: 16px 12px; background: var(--moment-plate); }
+.moment-page-inner { max-width: 480px; margin-inline: auto; }
+.moment-frame { position: relative; width: 100%; aspect-ratio: 3/4; overflow: hidden; container-type: inline-size; background-color: var(--moment-grass); background-size: cover; background-position: center; }
+.moment-flick-card { position: absolute; top: 5%; left: 6%; width: 88%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 3px solid var(--moment-plate); border-radius: 6px; background: var(--moment-black); box-shadow: var(--moment-card-shadow); }
+.moment-video { width: 100%; height: 100%; object-fit: contain; background: var(--moment-black); }
+.moment-embed { width: 100%; height: 100%; border: 0; background: var(--moment-black); }
+.moment-badge { position: absolute; left: -3%; bottom: -4%; width: 47%; aspect-ratio: 1; transform: rotate(-10deg); filter: drop-shadow(0 4px 6px rgb(0 0 0 / 25%)); }
+.moment-nav { position: absolute; right: 6%; top: 73%; bottom: 2%; width: 49%; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: repeat(2,minmax(0,1fr)); gap: 4px 5px; }
+.moment-nav .moment-button { width: 100%; height: 100%; min-width: 44px; min-height: 44px; padding: 0; gap: 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: transparent; border-radius: 0; color: var(--moment-ink); white-space: normal; font-family: 'Brandon Printed Two','Arial Black',sans-serif; }
+.moment-nav .moment-button:hover { background: transparent; }
+.moment-plate-wrap { display: grid; place-items: center; width: 13.5cqw; height: 13.5cqw; min-width: 40px; min-height: 40px; flex-shrink: 0; border: 2px solid transparent; border-radius: 50%; }
+.moment-button[aria-pressed=true] .moment-plate-wrap { border-color: var(--moment-red); }
+.moment-plate { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; background: var(--moment-plate); box-shadow: inset 0 0 0 3px var(--moment-cream), inset 0 0 0 4px var(--moment-rim), var(--moment-shadow); }
+.moment-nav .moment-icon { width: 65%; height: 65%; }
+.moment-label { display: block; max-width: 100%; border-radius: 999px; padding: 3px 5px 2px; background: var(--moment-cream); color: var(--moment-ink); font-size: 9px; line-height: 1.05; text-align: center; text-transform: uppercase; letter-spacing: 0; box-shadow: var(--moment-shadow); }
+.moment-button[aria-pressed=true] .moment-label { background: var(--moment-red); color: var(--moment-plate); }
+@container (min-width: 440px) { .moment-label { font-size: 11px; } }
+@media (hover:hover) { .moment-button:hover .moment-plate-wrap { transform: translateY(-2px); } }
+@media (prefers-reduced-motion:no-preference) { .moment-plate-wrap { transition: transform .2s ease; } }
