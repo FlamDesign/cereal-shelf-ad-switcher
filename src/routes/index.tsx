@@ -194,7 +194,7 @@ function Index() {
             <RegionBanner title={r.title} bg={r.bg} fg={r.fg} />
             <h2 className="text-[20px] font-bold">Explore recipes</h2>
             <div className="grid gap-6 md:grid-cols-3">
-              {r.recipes.map(([s, t, d, c]) => <RecipeCard key={s} state={s} title={t} desc={d} color={c} />)}
+              {r.recipes.map(([s, t, d, c]) => <RecipeCard key={s} state={s!} title={t!} desc={d!} color={c!} />)}
             </div>
           </section>
         ))}
