@@ -161,7 +161,7 @@
 .moment-flick-card { position: absolute; top: 5%; left: 6%; width: 88%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 0; padding: 0; border-radius: 8px; background: var(--moment-black); box-shadow: var(--moment-card-shadow); }
 .moment-video { width: 100%; height: 100%; object-fit: contain; background: var(--moment-black); }
 .moment-embed { width: 100%; height: 100%; border: 0; background: var(--moment-black); }
-.moment-badge { position: absolute; left: 3%; bottom: -6%; width: 47%; aspect-ratio: 1; object-fit: contain; transform: rotate(-10deg); transform-origin: center; }
+.moment-badge { position: absolute; left: 3%; bottom: -4.5%; width: 47%; aspect-ratio: 1; object-fit: contain; transform: rotate(-10deg); transform-origin: center; }
 .moment-nav { position: absolute; right: 6%; top: 73%; bottom: 1%; width: 50%; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: repeat(2,minmax(0,1fr)); gap: 4px 5px; }
 .moment-nav .moment-button { width: 100%; height: 100%; min-width: 44px; min-height: 44px; padding: 0; gap: 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: transparent; border-radius: 0; color: var(--moment-ink); white-space: normal; font-family: 'Brandon Printed Two','Arial Black',sans-serif; }
 .moment-nav .moment-button:hover { background: transparent; }
