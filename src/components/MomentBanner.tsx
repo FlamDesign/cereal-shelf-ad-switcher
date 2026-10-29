@@ -69,7 +69,7 @@ export const MOMENTS: Moment[] = [
   { id: "on-the-road", label: "On the road", tilt: 3, icon: icons["on-the-road"], src: "/ads/on-the-road.html", aspect: "1/1" },
 ];
 
-function Circle({ m, size }: { m: Moment; size: number }) {
+function Circle({ m, size, inner }: { m: Moment; size: number; inner?: boolean | undefined }) {
   const r = size / 118;
   return (
     <span
@@ -79,13 +79,20 @@ function Circle({ m, size }: { m: Moment; size: number }) {
         display: "flex", alignItems: "center", justifyContent: "center",
       }}
     >
-      <svg width={size * 0.61} height={size * 0.61} viewBox="0 0 64 64" aria-hidden>{m.icon}</svg>
+      {inner ? (
+        <span style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: size * 0.02 }}>
+          <svg width={size * 0.42} height={size * 0.42} viewBox="0 0 64 64" aria-hidden>{m.icon}</svg>
+          <span style={{ fontFamily: FONT, fontSize: Math.max(8, size * 0.105), lineHeight: 1, color: "#00463C", textTransform: "uppercase", textAlign: "center", maxWidth: size * 0.72, letterSpacing: 0.3 }}>{m.label}</span>
+        </span>
+      ) : (
+        <svg width={size * 0.61} height={size * 0.61} viewBox="0 0 64 64" aria-hidden>{m.icon}</svg>
+      )}
     </span>
   );
 }
 
 /** Plate with red ring + progress ring that fills over AUTO_ADVANCE_MS while auto-playing. */
-function Plate({ m, size, on, auto, cycle }: { m: Moment; size: number; on: boolean; auto: boolean; cycle: number }) {
+function Plate({ m, size, on, auto, cycle, inner }: { m: Moment; size: number; on: boolean; auto: boolean; cycle: number; inner?: boolean }) {
   const pad = on ? Math.max(5, size * 0.06) : 0;
   const outer = size + pad * 2 + (on ? 8 : 0);
   const rr = outer / 2 - 3;
@@ -105,7 +112,7 @@ function Plate({ m, size, on, auto, cycle }: { m: Moment; size: number; on: bool
         </svg>
       )}
       <span style={{ borderRadius: "50%", padding: pad, background: on ? C : "transparent", display: "inline-flex" }}>
-        <Circle m={m} size={size} />
+        <Circle m={m} size={size} inner={inner} />
       </span>
     </span>
   );
@@ -239,7 +246,7 @@ function Mobile({ idx, auto, cycle, pick }: S) {
     return () => ro.disconnect();
   }, []);
   const u = w / 100; // 1% of unit width
-  const plate = Math.round(13 * u);
+  const plate = Math.round(15 * u);
   return (
     <div style={{ padding: "0 12px" }}>
       <section ref={ref} style={{ position: "relative", width: "100%", aspectRatio: "3/4", overflow: "hidden", background: "#2F5A1E", fontFamily: FONT, color: "#00463C" }}>
@@ -260,7 +267,7 @@ function Mobile({ idx, auto, cycle, pick }: S) {
             const on = i === idx;
             return (
               <button key={m.id} className="mm-btn" onClick={() => pick(i)} aria-pressed={on} aria-label={m.label} style={{ minWidth: 44, minHeight: 44, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Plate m={m} size={on ? plate : Math.round(plate * 0.9)} on={on} auto={auto} cycle={cycle} />
+                <Plate m={m} size={on ? plate : Math.round(plate * 0.92)} on={on} auto={auto} cycle={cycle} inner />
               </button>
             );
           })}
