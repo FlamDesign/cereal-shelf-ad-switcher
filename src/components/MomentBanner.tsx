@@ -9,6 +9,7 @@ import a6 from "@/assets/hub/54eb5e9aca6fe7b4d45bf16bb1eb6dc7.png.asset.json";
 import a7 from "@/assets/hub/5c778920950a45a039d7c03c9236d4f1.png.asset.json";
 import a8 from "@/assets/hub/392eae8086746841ea6b22f4005db43f.png.asset.json";
 import font from "@/assets/hub/3a90540dc35e5382ba159fc56c774fd6.otf.asset.json";
+import logo from "@/assets/hub/moment-maker-logo.png.asset.json";
 
 const C = "#E2231A";
 
@@ -122,15 +123,7 @@ export function MomentBanner() {
           <img src={a7.url} alt="" style={{ position: "absolute", right: 22, bottom: 18, width: 42, transform: "rotate(-20deg)" }} />
           <img src={a8.url} alt="" style={{ position: "absolute", left: 300, bottom: 8, width: 34, transform: "rotate(10deg)" }} />
 
-          <div style={{ position: "absolute", left: 96, top: 6, width: 192, height: 192, borderRadius: "50%", background: "#FFF", boxShadow: "0 12px 20px rgba(0,0,0,.45),0 2px 5px rgba(0,0,0,.25)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <div style={{ width: 150, height: 150, borderRadius: "50%", boxShadow: "inset 0 0 0 1px #ECE6DA,0 0 0 4px #FBF9F5", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <h2 style={{ margin: 0, display: "flex", flexDirection: "column", alignItems: "center", lineHeight: 1, fontWeight: "normal" }}>
-                <span style={{ fontSize: 19, letterSpacing: 2, color: "#3C9CCC" }}>THE</span>
-                <span style={{ fontFamily: "'Pacifico',cursive", fontSize: 41, color: "#F05454", margin: "-2px 0 -1px" }}>Moment</span>
-                <span style={{ fontSize: 27, letterSpacing: 2, color: "#3C9CCC" }}>MAKER</span>
-              </h2>
-            </div>
-          </div>
+          <img src={logo.url} alt="The Moment Maker" style={{ position: "absolute", left: 96, top: 6, width: 192, height: 192, filter: "drop-shadow(0 12px 20px rgba(0,0,0,.45)) drop-shadow(0 2px 5px rgba(0,0,0,.25))" }} />
 
           <nav aria-label="Pick your moment" style={{ position: "absolute", left: 360, top: 20, width: 980, height: 170, display: "grid", gridTemplateColumns: "repeat(4,minmax(0,1fr))", gap: 24, alignItems: "center" }}>
             {MOMENTS.map((m) => {
