@@ -101,15 +101,18 @@ export function MomentBanner() {
     return () => ro.disconnect();
   }, []);
 
+  const H = active ? 790 : 204;
+  const current = MOMENTS.find((m) => m.id === active);
+
   return (
     <>
       <style>{`@font-face{font-family:"Brandon Printed Two";src:url("${font.url}") format("opentype");font-display:block}
-.mm-btn{transition:transform .18s ease;cursor:pointer;background:none;border:0;padding:0}
+.mm-btn{transition:transform .25s ease;cursor:pointer;background:none;border:0;padding:0}
 .mm-btn:hover{transform:translateY(-4px) rotate(0deg)!important}`}</style>
-      <div ref={wrap} style={{ width: "100%", height: 204 * scale, overflow: "hidden", borderRadius: 8 }}>
-        <div style={{ position: "relative", width: 1550, height: 204, overflow: "hidden", background: "#2F5A1E", fontFamily: FONT, color: "#00463C", transform: `scale(${scale})`, transformOrigin: "top left" }}>
-          <img src={bg.url} alt="" style={{ position: "absolute", left: 0, top: -260, width: 1550, height: 1030, objectFit: "cover" }} />
-          <div style={{ position: "absolute", inset: 0, background: "rgba(0,40,20,.18)" }} />
+      <div ref={wrap} style={{ width: "100%", height: H * scale, overflow: "hidden", borderRadius: 8, transition: "height .4s ease" }}>
+        <div style={{ position: "relative", width: 1550, height: H, overflow: "hidden", background: "#2F5A1E", fontFamily: FONT, color: "#00463C", transform: `scale(${scale})`, transformOrigin: "top left", transition: "height .4s ease" }}>
+          <img src={bg.url} alt="" style={{ position: "absolute", left: 0, top: active ? 0 : -260, width: 1550, height: 1030, objectFit: "cover" }} />
+          <div style={{ position: "absolute", inset: 0, background: active ? "rgba(0,40,20,.35)" : "rgba(0,40,20,.18)" }} />
           <img src={a1.url} alt="" style={{ position: "absolute", left: -40, top: -118, width: 420, transform: "rotate(-4deg)", filter: "drop-shadow(0 8px 6px rgba(0,0,0,.35))" }} />
           <img src={a2.url} alt="" style={{ position: "absolute", right: -70, top: -72, width: 330, transform: "rotate(8deg)", filter: "drop-shadow(0 6px 5px rgba(0,0,0,.35))" }} />
           <img src={a3.url} alt="" style={{ position: "absolute", left: -96, bottom: -150, width: 300, transform: "rotate(-90deg)", filter: "drop-shadow(0 8px 8px rgba(0,0,0,.35))" }} />
@@ -129,59 +132,33 @@ export function MomentBanner() {
             </div>
           </div>
 
-          <nav aria-label="Pick your moment" style={{ position: "absolute", left: 360, top: 20, width: 980, height: 170, display: "grid", gridTemplateColumns: "repeat(4,minmax(0,1fr))", gap: 24 }}>
-            {MOMENTS.map((m) => (
-              <button key={m.id} className="mm-btn" onClick={() => setActive(m.id)} style={{ display: "flex", flexDirection: "column", alignItems: "center", transform: `rotate(${m.tilt}deg)`, fontFamily: FONT }}>
-                <Circle m={m} size={118} />
-                <span style={{ marginTop: 10, display: "flex", alignItems: "center", gap: 6, padding: "7px 14px 6px", background: "#FFF8EC", borderRadius: 999, boxShadow: "0 6px 10px rgba(0,0,0,.3)", fontSize: 18, letterSpacing: 0.5, color: "#00463C", whiteSpace: "nowrap", textTransform: "uppercase" }}>
-                  {m.label} <Chevron />
-                </span>
-              </button>
-            ))}
+          <nav aria-label="Pick your moment" style={{ position: "absolute", left: 360, top: 20, width: 980, height: 170, display: "grid", gridTemplateColumns: "repeat(4,minmax(0,1fr))", gap: 24, alignItems: "center" }}>
+            {MOMENTS.map((m) => {
+              const on = m.id === active;
+              const small = active && !on;
+              return (
+                <button key={m.id} className="mm-btn" onClick={() => setActive(m.id)} aria-pressed={on} style={{ display: "flex", flexDirection: "column", alignItems: "center", transform: `rotate(${active ? 0 : m.tilt}deg)`, fontFamily: FONT, opacity: small ? 0.85 : 1 }}>
+                  <span style={{ borderRadius: "50%", padding: on ? 5 : 0, background: on ? C : "transparent" }}>
+                    <Circle m={m} size={on ? 128 : small ? 80 : 118} />
+                  </span>
+                  <span style={{ marginTop: 10, display: "flex", alignItems: "center", gap: 6, padding: small ? "5px 10px 4px" : "7px 14px 6px", background: on ? C : "#FFF8EC", borderRadius: 999, boxShadow: "0 6px 10px rgba(0,0,0,.3)", fontSize: small ? 14 : 18, letterSpacing: 0.5, color: on ? "#FFF" : "#00463C", whiteSpace: "nowrap", textTransform: "uppercase" }}>
+                    {on && <span aria-hidden>▶</span>}{m.label} {!on && <Chevron />}
+                  </span>
+                </button>
+              );
+            })}
           </nav>
+
+          {current && (
+            <>
+              <div style={{ position: "absolute", left: 335, top: 220, width: 880, height: 495, background: "#d9d9d9", borderRadius: 8, overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,.5)" }}>
+                <iframe key={current.id} src={current.src} title={current.label} style={{ width: "100%", height: "100%", border: 0 }} allow="autoplay; fullscreen" />
+              </div>
+              <button onClick={() => setActive(null)} aria-label="Close ad" style={{ position: "absolute", left: 1235, top: 220, width: 44, height: 44, borderRadius: "50%", border: 0, background: "#FFF8EC", color: "#00463C", fontSize: 22, cursor: "pointer", boxShadow: "0 6px 10px rgba(0,0,0,.3)" }}>✕</button>
+            </>
+          )}
         </div>
       </div>
-      {active && <AdPlayer activeId={active} onSelect={setActive} onClose={() => setActive(null)} />}
     </>
-  );
-}
-
-function AdPlayer({ activeId, onSelect, onClose }: { activeId: string; onSelect: (id: string) => void; onClose: () => void }) {
-  const current = MOMENTS.find((m) => m.id === activeId)!;
-  const others = MOMENTS.filter((m) => m.id !== activeId);
-
-  useEffect(() => {
-    const k = (e: KeyboardEvent) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", k);
-    document.body.style.overflow = "hidden";
-    return () => { window.removeEventListener("keydown", k); document.body.style.overflow = ""; };
-  }, [onClose]);
-
-  return (
-    <div onClick={onClose} style={{ position: "fixed", inset: 0, zIndex: 100, background: "rgba(0,0,0,.35)", backdropFilter: "blur(6px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
-      <div onClick={(e) => e.stopPropagation()} style={{ position: "relative", width: "min(63vw, 95vh, 1200px)", minWidth: 300, display: "flex", flexDirection: "column", gap: 18 }}>
-        <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", background: "#d9d9d9", borderRadius: 6, overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,.4)" }}>
-          <iframe key={current.id} src={current.src} title={current.label} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }} allow="autoplay; fullscreen" />
-          <button onClick={onClose} aria-label="Close" style={{ position: "absolute", right: 10, top: 10, width: 32, height: 32, borderRadius: "50%", border: 0, background: "rgba(0,0,0,.55)", color: "#fff", fontSize: 18, cursor: "pointer" }}>✕</button>
-        </div>
-
-        {/* Moment buttons below the ad */}
-        <div style={{ display: "flex", justifyContent: "center", gap: "4%", flexWrap: "wrap" }}>
-          {MOMENTS.map((m) => {
-            const on = m.id === activeId;
-            return (
-              <button key={m.id} className="mm-btn" onClick={() => onSelect(m.id)} aria-pressed={on} aria-label={`Play ${m.label}`} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, transform: on ? "scale(1.08)" : undefined }}>
-                <span style={{ borderRadius: "50%", padding: 3, background: on ? C : "transparent" }}>
-                  <Circle m={m} size={72} />
-                </span>
-                <span style={{ display: "flex", alignItems: "center", gap: 4, fontFamily: FONT, fontSize: 13, letterSpacing: 0.5, color: on ? "#FFF" : "#00463C", background: on ? C : "#FFF8EC", borderRadius: 999, padding: "4px 12px", boxShadow: "0 4px 8px rgba(0,0,0,.3)", textTransform: "uppercase", whiteSpace: "nowrap" }}>
-                  {on && <span aria-hidden>▶</span>}{m.label}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    </div>
   );
 }
