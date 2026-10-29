@@ -159,25 +159,27 @@ function AdPlayer({ activeId, onSelect, onClose }: { activeId: string; onSelect:
 
   return (
     <div onClick={onClose} style={{ position: "fixed", inset: 0, zIndex: 100, background: "rgba(0,0,0,.35)", backdropFilter: "blur(6px)", display: "flex", alignItems: "center", justifyContent: "center", padding: 16 }}>
-      <div onClick={(e) => e.stopPropagation()} style={{ position: "relative", width: "min(63vw, 112vh, 1200px)", minWidth: 300, aspectRatio: "16/9", background: "#d9d9d9", borderRadius: 6, overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,.4)" }}>
-        <iframe key={current.id} src={current.src} title={current.label} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }} allow="autoplay; fullscreen" />
-
-        {/* Now playing badge */}
-        <div style={{ position: "absolute", left: 12, top: 12, display: "flex", alignItems: "center", gap: 8, padding: "4px 14px 4px 4px", background: "#FFF8EC", borderRadius: 999, boxShadow: "0 4px 10px rgba(0,0,0,.3)", fontFamily: FONT, color: "#00463C", fontSize: 14, textTransform: "uppercase", letterSpacing: 0.5 }}>
-          <Circle m={current} size={40} ring={false} />
-          {current.label}
+      <div onClick={(e) => e.stopPropagation()} style={{ position: "relative", width: "min(63vw, 95vh, 1200px)", minWidth: 300, display: "flex", flexDirection: "column", gap: 18 }}>
+        <div style={{ position: "relative", width: "100%", aspectRatio: "16/9", background: "#d9d9d9", borderRadius: 6, overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,.4)" }}>
+          <iframe key={current.id} src={current.src} title={current.label} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }} allow="autoplay; fullscreen" />
+          <button onClick={onClose} aria-label="Close" style={{ position: "absolute", right: 10, top: 10, width: 32, height: 32, borderRadius: "50%", border: 0, background: "rgba(0,0,0,.55)", color: "#fff", fontSize: 18, cursor: "pointer" }}>✕</button>
         </div>
 
-        <button onClick={onClose} aria-label="Close" style={{ position: "absolute", right: 10, top: 10, width: 32, height: 32, borderRadius: "50%", border: 0, background: "rgba(0,0,0,.55)", color: "#fff", fontSize: 18, cursor: "pointer" }}>✕</button>
-
-        {/* Other moments */}
-        <div style={{ position: "absolute", right: "3%", top: "50%", transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: "4%", alignItems: "center" }}>
-          {others.map((m) => (
-            <button key={m.id} className="mm-btn" onClick={() => onSelect(m.id)} title={m.label} aria-label={`Play ${m.label}`} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-              <Circle m={m} size={64} />
-              <span style={{ fontFamily: FONT, fontSize: 11, color: "#00463C", background: "#FFF8EC", borderRadius: 999, padding: "2px 8px", textTransform: "uppercase", whiteSpace: "nowrap" }}>{m.label}</span>
-            </button>
-          ))}
+        {/* Moment buttons below the ad */}
+        <div style={{ display: "flex", justifyContent: "center", gap: "4%", flexWrap: "wrap" }}>
+          {MOMENTS.map((m) => {
+            const on = m.id === activeId;
+            return (
+              <button key={m.id} className="mm-btn" onClick={() => onSelect(m.id)} aria-pressed={on} aria-label={`Play ${m.label}`} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6, transform: on ? "scale(1.08)" : undefined }}>
+                <span style={{ borderRadius: "50%", padding: 3, background: on ? C : "transparent" }}>
+                  <Circle m={m} size={72} />
+                </span>
+                <span style={{ display: "flex", alignItems: "center", gap: 4, fontFamily: FONT, fontSize: 13, letterSpacing: 0.5, color: on ? "#FFF" : "#00463C", background: on ? C : "#FFF8EC", borderRadius: 999, padding: "4px 12px", boxShadow: "0 4px 8px rgba(0,0,0,.3)", textTransform: "uppercase", whiteSpace: "nowrap" }}>
+                  {on && <span aria-hidden>▶</span>}{m.label}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>
