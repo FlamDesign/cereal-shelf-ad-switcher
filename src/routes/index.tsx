@@ -1,5 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MomentBanner } from "@/components/MomentBanner";
+import imgNJ from "@/assets/recipes/new_jersey_bagel_dogs.png.asset.json";
+import imgNY from "@/assets/recipes/new_york_buffalo_mac.png.asset.json";
+import imgPA from "@/assets/recipes/pennsylvania_cinnamon_roll_pie.png.asset.json";
+import imgGA from "@/assets/recipes/georgia_peach_cobbler.png.asset.json";
+import imgVA from "@/assets/recipes/virginia_biscuit_sandwiches.png.asset.json";
+import imgFL from "@/assets/recipes/florida_berry_key_lime_pie.png.asset.json";
+import imgMI from "@/assets/recipes/michigan_blueberry_pie.png.asset.json";
+import imgKS from "@/assets/recipes/kansas_bbq_chicken_crescents.png.asset.json";
+import imgIN from "@/assets/recipes/indiana_piggy_pop_party_mix.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,11 +46,13 @@ const celebrate: P[] = [
   { img: "https://i5.walmartimages.com/seo/Annie-s-Shells-and-White-Cheddar-Made-with-Organic-Pasta-and-Real-Cheese-6-oz_f047b38f-ecdf-47f8-9df2-acb57dea5622.d3086bf789f582686d5dadb05ba6a290.jpeg?odnHeight=480&odnWidth=480", name: "Annie's Shells and White Cheddar, Made with Organic Pasta and Real Cheese, 6 oz", price: "1.48", was: "$6.12", options: "6 options", badge: "Best seller", color: "#6b3fa0", label: "SHELLS & CHEDDAR" },
 ];
 
-const regions = [
-  { title: "NORTHEAST", banner: "https://advertising.walmart.com/thunder/assets/media-service/wcnp-prod/images/61c41d25-2109-4ca2-997f-db06d4a3148c/3b1570bb-9c3c-4c00-a914-7df0415918ac.jpeg", recipes: [["NEW JERSEY", "Everything Bagel Dogs", "Made easy with Pillsbury Crescents.", "#3b5a7a"], ["NEW YORK", "Buffalo Mac & Cheese", "Baked to perfection with chicken and Annie's Mac & Cheese.", "#e09a4a"], ["PENNSYLVANIA", "Cinnamon Roll Pie", "Put a spin on Dutch apple pie with Pillsbury Cinnamon Rolls.", "#8a5a3c"]] },
-  { title: "SOUTHEAST", banner: "https://advertising.walmart.com/thunder/assets/media-service/wcnp-prod/images/5030faf3-64ca-4d3f-90eb-b3bad801cfcb/80fc6696-1b2a-47f6-b100-bb1a4e4a71da.jpeg", recipes: [["GEORGIA", "Classic Peach Cobbler", "Bake up this sweet summer dessert with Bisquick.", "#e8a860"], ["VIRGINIA", "Hot Biscuit Sandwiches", "Layers of ham and Swiss cheese on Pillsbury Biscuits.", "#c99a5a"], ["FLORIDA", "Berry Key Lime Pie", "A fresh twist on a classic starts with Pillsbury pie crust.", "#d8394a"]] },
-  { title: "MIDWEST", banner: "https://advertising.walmart.com/thunder/assets/media-service/wcnp-prod/images/c85d1be8-bd7e-4dab-afd6-46d3fa0a1a05/0830c969-813c-4ea4-8e82-d5308b11778d.jpeg", recipes: [["MICHIGAN", "Classic Blueberry Pie", "Use Gold Medal All-Purpose Flour for this homemade pie.", "#3a3448"], ["KANSAS", "BBQ Chicken Crescents", "Make it an easy weeknight win with a side of green beans.", "#d79a3c"], ["INDIANA", "Piggy Pop Party Mix", "Add crispy bacon & buttery popcorn to this Chex Party Mix.", "#c7843a"]] },
-  { title: "SOUTHWEST", banner: "https://advertising.walmart.com/thunder/assets/media-service/wcnp-prod/images/c6b0ecbd-b6d9-47f5-acfe-f7d76ee28efe/348c86a9-2e40-4658-a3be-e3188479b29e.jpeg", recipes: [["NEW MEXICO", "Green Chile Chex Mix", "A zesty, spicy twist on classic Chex Party Mix.", "#d4a24a"], ["OKLAHOMA", "Sugar Cookie Bars", "Easy bars made with Betty Crocker Sugar Cookie mix.", "#d9b77a"], ["TEXAS", "Loaded Pizza Roll Nachos", "Game-day nachos piled high on Totino's Pizza Rolls.", "#c94a2a"]] },
+type Recipe = { s: string; t: string; d: string; c: string; img?: string };
+
+const regions: { title: string; banner: string; recipes: Recipe[] }[] = [
+  { title: "NORTHEAST", banner: "https://advertising.walmart.com/thunder/assets/media-service/wcnp-prod/images/61c41d25-2109-4ca2-997f-db06d4a3148c/3b1570bb-9c3c-4c00-a914-7df0415918ac.jpeg", recipes: [{ s: "NEW JERSEY", t: "Everything Bagel Dogs", d: "Made easy with Pillsbury Crescents.", c: "#3b5a7a", img: imgNJ.url }, { s: "NEW YORK", t: "Buffalo Mac & Cheese", d: "Baked to perfection with chicken and Annie's Mac & Cheese.", c: "#e09a4a", img: imgNY.url }, { s: "PENNSYLVANIA", t: "Cinnamon Roll Pie", d: "Put a spin on Dutch apple pie with Pillsbury Cinnamon Rolls.", c: "#8a5a3c", img: imgPA.url }] },
+  { title: "SOUTHEAST", banner: "https://advertising.walmart.com/thunder/assets/media-service/wcnp-prod/images/5030faf3-64ca-4d3f-90eb-b3bad801cfcb/80fc6696-1b2a-47f6-b100-bb1a4e4a71da.jpeg", recipes: [{ s: "GEORGIA", t: "Classic Peach Cobbler", d: "Bake up this sweet summer dessert with Bisquick.", c: "#e8a860", img: imgGA.url }, { s: "VIRGINIA", t: "Hot Biscuit Sandwiches", d: "Layers of ham and Swiss cheese on Pillsbury Biscuits.", c: "#c99a5a", img: imgVA.url }, { s: "FLORIDA", t: "Berry Key Lime Pie", d: "A fresh twist on a classic starts with Pillsbury pie crust.", c: "#d8394a", img: imgFL.url }] },
+  { title: "MIDWEST", banner: "https://advertising.walmart.com/thunder/assets/media-service/wcnp-prod/images/c85d1be8-bd7e-4dab-afd6-46d3fa0a1a05/0830c969-813c-4ea4-8e82-d5308b11778d.jpeg", recipes: [{ s: "MICHIGAN", t: "Classic Blueberry Pie", d: "Use Gold Medal All-Purpose Flour for this homemade pie.", c: "#3a3448", img: imgMI.url }, { s: "KANSAS", t: "BBQ Chicken Crescents", d: "Make it an easy weeknight win with a side of green beans.", c: "#d79a3c", img: imgKS.url }, { s: "INDIANA", t: "Piggy Pop Party Mix", d: "Add crispy bacon & buttery popcorn to this Chex Party Mix.", c: "#c7843a", img: imgIN.url }] },
+  { title: "SOUTHWEST", banner: "https://advertising.walmart.com/thunder/assets/media-service/wcnp-prod/images/c6b0ecbd-b6d9-47f5-acfe-f7d76ee28efe/348c86a9-2e40-4658-a3be-e3188479b29e.jpeg", recipes: [{ s: "NEW MEXICO", t: "Green Chile Chex Mix", d: "A zesty, spicy twist on classic Chex Party Mix.", c: "#d4a24a" }, { s: "OKLAHOMA", t: "Sugar Cookie Bars", d: "Easy bars made with Betty Crocker Sugar Cookie mix.", c: "#d9b77a" }, { s: "TEXAS", t: "Loaded Pizza Roll Nachos", d: "Game-day nachos piled high on Totino's Pizza Rolls.", c: "#c94a2a" }] },
 ];
 
 const nav = ["Rollbacks & More", "Get it Fast", "Pharmacy", "Halloween", "New Arrivals", "Holiday Shop", "Gifting", "Toy Shop", "Meals Made Easy", "Only at Walmart", "Credit Card", "Walmart+"];
@@ -120,14 +131,18 @@ function RegionBanner({ title, banner }: { title: string; banner: string }) {
   );
 }
 
-function RecipeCard({ state, title, desc, color }: { state: string; title: string; desc: string; color: string }) {
+function RecipeCard({ state, title, desc, color, img }: { state: string; title: string; desc: string; color: string; img?: string | undefined }) {
   return (
     <div className="overflow-hidden rounded-lg bg-white shadow-[0_1px_4px_rgba(0,0,0,.2)]">
-      <div className="relative aspect-[16/9]" style={{ background: `radial-gradient(circle at 40% 60%, ${color}, #2b2b2b 140%)` }}>
-        <div className="absolute left-0 right-0 top-[14px] h-[3px] bg-[#ea1100]" />
-        <div className="absolute left-0 right-0 top-[30px] h-[3px] bg-[#7fd0f5]" />
-        <span className="absolute left-0 top-0 bg-white px-4 py-2 text-[26px] tracking-wide" style={{ fontFamily: "Anton, sans-serif", color: "#0b2fa0" }}>{state}</span>
-      </div>
+      {img ? (
+        <img src={img} alt={`${state} – ${title}`} loading="lazy" className="aspect-[16/9] w-full object-cover" />
+      ) : (
+        <div className="relative aspect-[16/9]" style={{ background: `radial-gradient(circle at 40% 60%, ${color}, #2b2b2b 140%)` }}>
+          <div className="absolute left-0 right-0 top-[14px] h-[3px] bg-[#ea1100]" />
+          <div className="absolute left-0 right-0 top-[30px] h-[3px] bg-[#7fd0f5]" />
+          <span className="absolute left-0 top-0 bg-white px-4 py-2 text-[26px] tracking-wide" style={{ fontFamily: "Anton, sans-serif", color: "#0b2fa0" }}>{state}</span>
+        </div>
+      )}
       <div className="p-4">
         <h3 className="text-[17px] font-bold">{title}</h3>
         <p className="mt-2 h-10 text-[13px] text-gray-700">{desc}</p>
@@ -184,7 +199,7 @@ function Index() {
             <RegionBanner title={r.title} banner={r.banner} />
             <h2 className="text-[20px] font-bold">Explore recipes</h2>
             <div className="grid gap-6 md:grid-cols-3">
-              {r.recipes.map(([s, t, d, c]) => <RecipeCard key={s} state={s!} title={t!} desc={d!} color={c!} />)}
+              {r.recipes.map((rec) => <RecipeCard key={rec.s} state={rec.s} title={rec.t} desc={rec.d} color={rec.c} img={rec.img} />)}
             </div>
           </section>
         ))}
