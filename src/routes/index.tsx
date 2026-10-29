@@ -131,7 +131,7 @@ function RegionBanner({ title, banner }: { title: string; banner: string }) {
   );
 }
 
-function RecipeCard({ state, title, desc, color, img }: { state: string; title: string; desc: string; color: string; img?: string }) {
+function RecipeCard({ state, title, desc, color, img }: { state: string; title: string; desc: string; color: string; img?: string | undefined }) {
   return (
     <div className="overflow-hidden rounded-lg bg-white shadow-[0_1px_4px_rgba(0,0,0,.2)]">
       {img ? (
