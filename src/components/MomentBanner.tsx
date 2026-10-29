@@ -205,9 +205,9 @@ function Desktop({ idx, auto, touched, cycle, pick }: S) {
         <img src={a7.url} alt="" style={{ position: "absolute", right: 70, top: 380, width: 42, transform: "rotate(-20deg)" }} />
         <img src={a8.url} alt="" style={{ position: "absolute", left: 1290, bottom: 40, width: 34, transform: "rotate(10deg)" }} />
 
-        <img src={logo.url} alt="The Moment Maker" style={{ position: "absolute", left: -70, top: -70, width: 330, height: 330, transform: "rotate(-10deg)", filter: logoShadow, zIndex: 3 }} />
+        <img src={logo.url} alt="The Moment Maker" style={{ position: "absolute", left: -36, top: -44, width: 400, height: 400, transform: "rotate(-10deg)", filter: logoShadow, zIndex: 3 }} />
 
-        <nav aria-label="Pick your moment" style={{ position: "absolute", left: 330, top: 16, width: 920, height: 180, display: "grid", gridTemplateColumns: "repeat(4,minmax(0,1fr))", gap: 20, alignItems: "center", zIndex: 4 }}>
+        <nav aria-label="Pick your moment" style={{ position: "absolute", left: 410, top: 16, width: 900, height: 180, display: "grid", gridTemplateColumns: "repeat(4,minmax(0,1fr))", gap: 20, alignItems: "center", zIndex: 4 }}>
           {MOMENTS.map((m, i) => {
             const on = i === idx;
             return (
@@ -218,9 +218,9 @@ function Desktop({ idx, auto, touched, cycle, pick }: S) {
             );
           })}
         </nav>
-        {!touched && <div style={{ position: "absolute", left: 1270, top: 88, zIndex: 4 }}><Hint /></div>}
+        {!touched && <div style={{ position: "absolute", left: 1330, top: 88, zIndex: 4 }}><Hint /></div>}
 
-        <div style={{ position: "absolute", left: 345, top: 226, width: 880, height: 495, background: "#d9d9d9", borderRadius: 8, overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,.5)", zIndex: 4 }}>
+        <div style={{ position: "absolute", left: 420, top: 226, width: 880, height: 495, background: "#d9d9d9", borderRadius: 8, overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,.5)", zIndex: 4 }}>
           <iframe key={current.id} src={current.src} title={current.label} style={{ width: "100%", height: "100%", border: 0 }} allow="autoplay; fullscreen" />
         </div>
       </div>
@@ -238,8 +238,8 @@ function Mobile({ idx, auto, touched, cycle, pick }: S) {
       <div style={{ position: "absolute", inset: 0, background: "rgba(0,40,20,.35)" }} />
       <img src={a1.url} alt="" style={{ position: "absolute", left: "-8%", top: "-6vw", width: "80%", filter: shadow }} />
       <img src={a2.url} alt="" style={{ position: "absolute", right: "-12%", top: "-4vw", width: "60%", transform: "rotate(6deg)", filter: shadow }} />
-      <img src={logo.url} alt="The Moment Maker" style={{ position: "absolute", left: "-12vw", top: "-12vw", width: "55vw", height: "55vw", transform: "rotate(-10deg)", filter: logoShadow, zIndex: 3 }} />
-      <div style={{ position: "relative", height: "45vw" }}>
+      <img src={logo.url} alt="The Moment Maker" style={{ position: "absolute", left: "-5vw", top: "-6vw", width: "58vw", height: "58vw", transform: "rotate(-10deg)", filter: logoShadow, zIndex: 3 }} />
+      <div style={{ position: "relative", height: "58vw" }}>
         {!touched && <div style={{ position: "absolute", right: 12, bottom: 10, zIndex: 4 }}><Hint /></div>}
       </div>
       <div style={{ position: "relative", zIndex: 2, padding: "0 12px" }}>
