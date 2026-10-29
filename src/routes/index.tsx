@@ -115,7 +115,7 @@ function Shelf({ title, items }: { title: string; items: P[] }) {
 function RegionBanner({ title, banner }: { title: string; banner: string }) {
   return (
     <div className="overflow-hidden rounded-lg">
-      <img src={banner} alt={`Flavors from the ${title}`} loading="lazy" className="h-[clamp(110px,14vw,227px)] w-full object-cover" />
+      <img src={banner} alt={`Flavors from the ${title}`} loading="lazy" className="w-full" />
     </div>
   );
 }
