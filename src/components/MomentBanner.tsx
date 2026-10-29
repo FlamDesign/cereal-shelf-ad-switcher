@@ -78,8 +78,8 @@ export function MomentBanner() {
               aria-label={m.label} onClick={() => setIdx(i)}>
               <span className="moment-plate-wrap"><span className="moment-plate">
                 <svg className="moment-icon" viewBox="0 0 64 64" aria-hidden="true">{m.icon}</svg>
+                <span className="moment-label">{m.label}</span>
               </span></span>
-              <span className="moment-label">{m.label}</span>
             </Button>
           ))}
         </nav>
