@@ -158,7 +158,7 @@
 .moment-page { min-height: 100svh; padding: 16px 12px; background: var(--moment-plate); }
 .moment-page-inner { max-width: 480px; margin-inline: auto; }
 .moment-frame { position: relative; width: 100%; aspect-ratio: 3/4; overflow: hidden; container-type: inline-size; background-color: var(--moment-grass); background-size: cover; background-position: center; }
-.moment-flick-card { position: absolute; top: 5%; left: 6%; width: 88%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 3px solid var(--moment-plate); border-radius: 6px; background: var(--moment-black); box-shadow: var(--moment-card-shadow); }
+.moment-flick-card { position: absolute; top: 5%; left: 6%; width: 88%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 0; padding: 0; border-radius: 8px; background: var(--moment-black); box-shadow: var(--moment-card-shadow); }
 .moment-video { width: 100%; height: 100%; object-fit: contain; background: var(--moment-black); }
 .moment-embed { width: 100%; height: 100%; border: 0; background: var(--moment-black); }
 .moment-badge { position: absolute; left: -3%; bottom: -6%; width: 47%; aspect-ratio: 1; transform: rotate(-10deg); filter: drop-shadow(0 4px 6px rgb(0 0 0 / 25%)); }
@@ -179,3 +179,34 @@
 .moment-progress-fill { stroke: var(--moment-cream); stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 100; animation: moment-progress linear forwards; }
 @keyframes moment-progress { to { stroke-dashoffset: 0; } }
 @media (prefers-reduced-motion:reduce) { .moment-progress-fill { animation: none; stroke-dashoffset: 0; } }
+.wf-page { min-height: 100svh; background: #FAFAFA; display: flex; justify-content: center; }
+.wf-column { width: 100%; max-width: 480px; height: 100svh; min-height: 560px; padding: 0 12px; display: grid; grid-template-rows: minmax(0,1fr) auto minmax(0,1fr); row-gap: 14px; overflow: hidden; }
+.wf-top, .wf-bottom { pointer-events: none; user-select: none; display: flex; flex-direction: column; gap: 14px; overflow: hidden; }
+.wf-top { justify-content: flex-end; }
+.wf-slot { display: flex; align-items: center; justify-content: center; }
+.wf-slot > * { width: 100%; }
+.wf-bar { display: flex; justify-content: space-between; align-items: center; }
+.wf-burger { display: flex; flex-direction: column; gap: 4px; }
+.wf-burger i { display: block; width: 24px; height: 4px; border-radius: 2px; background: #D4D4D4; }
+.wf-bar-pills { display: flex; gap: 8px; }
+.wf-pill { height: 26px; border-radius: 999px; }
+.wf-w-lg { width: 90px; } .wf-w-sm { width: 52px; }
+.wf-dark { background: #C4C4C4 !important; }
+.wf-light { background: #EDEDED; }
+.wf-search { height: 22px; border-radius: 999px; background: #EDEDED; flex-shrink: 0; }
+.wf-row { display: flex; gap: 14px; }
+.wf-center { align-items: center; }
+.wf-thumb { position: relative; width: 96px; height: 88px; flex-shrink: 0; border-radius: 10px; background: #EDEDED; }
+.wf-badge { position: absolute; top: -6px; right: -6px; width: 28px; height: 28px; border-radius: 50%; background: #C4C4C4; border: 2px solid #FAFAFA; }
+.wf-lines { flex: 1; display: flex; flex-direction: column; gap: 10px; padding-top: 4px; }
+.wf-lines span, .wf-cards span:not(.wf-img) { display: block; height: 12px; border-radius: 999px; background: #E5E5E5; }
+.wf-chips { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+.wf-chips span { height: 30px; border-radius: 999px; background: #F2F2F2; border: 2px solid #E5E5E5; }
+.wf-avatar { width: 42px; height: 42px; flex-shrink: 0; border-radius: 50%; background: #E0E0E0; }
+.wf-input { display: flex; align-items: center; gap: 14px; height: 46px; padding: 0 14px; border-radius: 14px; background: #F2F2F2; flex-shrink: 0; }
+.wf-input b { color: #D4D4D4; font-size: 26px; font-weight: 700; line-height: 1; }
+.wf-input span { width: 30%; height: 14px; border-radius: 999px; background: #E5E5E5; }
+.wf-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+.wf-cards > div { display: flex; flex-direction: column; gap: 8px; padding: 10px; border-radius: 12px; background: #F2F2F2; }
+.wf-img { display: block; height: 40px; border-radius: 8px; background: #E5E5E5; }
+.wf-tall { height: 90px; border-radius: 18px; background: #EDEDED; flex-shrink: 0; }
