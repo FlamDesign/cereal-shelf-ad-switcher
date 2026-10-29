@@ -162,7 +162,7 @@
 .moment-video { width: 100%; height: 100%; object-fit: contain; background: var(--moment-black); }
 .moment-embed { width: 100%; height: 100%; border: 0; background: var(--moment-black); }
 .moment-badge { position: absolute; left: 3%; bottom: -4.5%; width: 47%; aspect-ratio: 1; object-fit: contain; transform: rotate(-10deg); transform-origin: center; }
-.moment-nav { --flick-bottom: calc(88cqw + 20cqw / 3); --strip: calc(400cqw / 3 - var(--flick-bottom)); position: absolute; right: 6cqw; top: calc(var(--flick-bottom) + (var(--strip) - 37cqw) / 2); width: 37cqw; height: 37cqw; display: grid; grid-template-columns: repeat(2,17cqw); grid-template-rows: repeat(2,17cqw); gap: 3cqw; }
+.moment-nav { --flick-bottom: calc(88cqw + 20cqw / 3); --strip: calc(400cqw / 3 - var(--flick-bottom)); position: absolute; right: 6cqw; top: calc(var(--flick-bottom) + (var(--strip) - 31cqw) / 2); width: 31cqw; height: 31cqw; display: grid; grid-template-columns: repeat(2,14cqw); grid-template-rows: repeat(2,14cqw); gap: 3cqw; }
 .moment-nav .moment-button { width: 100%; height: 100%; min-width: 0; min-height: 0; padding: 0; display: flex; align-items: center; justify-content: center; background: transparent; border-radius: 0; overflow: visible; }
 .moment-nav .moment-button:hover { background: transparent; }
 .moment-plate-wrap { position: relative; display: block; width: 91%; height: 91%; flex-shrink: 0; border-radius: 50%; }
