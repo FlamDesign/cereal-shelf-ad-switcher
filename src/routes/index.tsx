@@ -131,14 +131,18 @@ function RegionBanner({ title, banner }: { title: string; banner: string }) {
   );
 }
 
-function RecipeCard({ state, title, desc, color }: { state: string; title: string; desc: string; color: string }) {
+function RecipeCard({ state, title, desc, color, img }: { state: string; title: string; desc: string; color: string; img?: string }) {
   return (
     <div className="overflow-hidden rounded-lg bg-white shadow-[0_1px_4px_rgba(0,0,0,.2)]">
-      <div className="relative aspect-[16/9]" style={{ background: `radial-gradient(circle at 40% 60%, ${color}, #2b2b2b 140%)` }}>
-        <div className="absolute left-0 right-0 top-[14px] h-[3px] bg-[#ea1100]" />
-        <div className="absolute left-0 right-0 top-[30px] h-[3px] bg-[#7fd0f5]" />
-        <span className="absolute left-0 top-0 bg-white px-4 py-2 text-[26px] tracking-wide" style={{ fontFamily: "Anton, sans-serif", color: "#0b2fa0" }}>{state}</span>
-      </div>
+      {img ? (
+        <img src={img} alt={`${state} – ${title}`} loading="lazy" className="aspect-[16/9] w-full object-cover" />
+      ) : (
+        <div className="relative aspect-[16/9]" style={{ background: `radial-gradient(circle at 40% 60%, ${color}, #2b2b2b 140%)` }}>
+          <div className="absolute left-0 right-0 top-[14px] h-[3px] bg-[#ea1100]" />
+          <div className="absolute left-0 right-0 top-[30px] h-[3px] bg-[#7fd0f5]" />
+          <span className="absolute left-0 top-0 bg-white px-4 py-2 text-[26px] tracking-wide" style={{ fontFamily: "Anton, sans-serif", color: "#0b2fa0" }}>{state}</span>
+        </div>
+      )}
       <div className="p-4">
         <h3 className="text-[17px] font-bold">{title}</h3>
         <p className="mt-2 h-10 text-[13px] text-gray-700">{desc}</p>
@@ -195,7 +199,7 @@ function Index() {
             <RegionBanner title={r.title} banner={r.banner} />
             <h2 className="text-[20px] font-bold">Explore recipes</h2>
             <div className="grid gap-6 md:grid-cols-3">
-              {r.recipes.map(([s, t, d, c]) => <RecipeCard key={s} state={s!} title={t!} desc={d!} color={c!} />)}
+              {r.recipes.map((rec) => <RecipeCard key={rec.s} state={rec.s} title={rec.t} desc={rec.d} color={rec.c} img={rec.img} />)}
             </div>
           </section>
         ))}
