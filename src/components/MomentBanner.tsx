@@ -91,7 +91,7 @@ const Chevron = () => (
 export function MomentBanner() {
   const wrap = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
-  const [active, setActive] = useState<string | null>(null);
+  const [active, setActive] = useState<string | null>(MOMENTS[0]!.id);
 
   useEffect(() => {
     const el = wrap.current;
@@ -154,7 +154,6 @@ export function MomentBanner() {
               <div style={{ position: "absolute", left: 335, top: 220, width: 880, height: 495, background: "#d9d9d9", borderRadius: 8, overflow: "hidden", boxShadow: "0 20px 50px rgba(0,0,0,.5)" }}>
                 <iframe key={current.id} src={current.src} title={current.label} style={{ width: "100%", height: "100%", border: 0 }} allow="autoplay; fullscreen" />
               </div>
-              <button onClick={() => setActive(null)} aria-label="Close ad" style={{ position: "absolute", left: 1235, top: 220, width: 44, height: 44, borderRadius: "50%", border: 0, background: "#FFF8EC", color: "#00463C", fontSize: 22, cursor: "pointer", boxShadow: "0 6px 10px rgba(0,0,0,.3)" }}>✕</button>
             </>
           )}
         </div>
