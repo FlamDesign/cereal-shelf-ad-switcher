@@ -38,10 +38,10 @@ const celebrate: P[] = [
 ];
 
 const regions = [
-  { title: "NORTHEAST", bg: "#5bc0f0", fg: "#ffffff", recipes: [["NEW JERSEY", "Everything Bagel Dogs", "Made easy with Pillsbury Crescents.", "#3b5a7a"], ["NEW YORK", "Buffalo Mac & Cheese", "Baked to perfection with chicken and Annie's Mac & Cheese.", "#e09a4a"], ["PENNSYLVANIA", "Cinnamon Roll Pie", "Put a spin on Dutch apple pie with Pillsbury Cinnamon Rolls.", "#8a5a3c"]] },
-  { title: "SOUTHEAST", bg: "#ec3b33", fg: "#ffffff", recipes: [["GEORGIA", "Classic Peach Cobbler", "Bake up this sweet summer dessert with Bisquick.", "#e8a860"], ["VIRGINIA", "Hot Biscuit Sandwiches", "Layers of ham and Swiss cheese on Pillsbury Biscuits.", "#c99a5a"], ["FLORIDA", "Berry Key Lime Pie", "A fresh twist on a classic starts with Pillsbury pie crust.", "#d8394a"]] },
-  { title: "MIDWEST", bg: "#0b2fb0", fg: "#ffffff", recipes: [["MICHIGAN", "Classic Blueberry Pie", "Use Gold Medal All-Purpose Flour for this homemade pie.", "#3a3448"], ["KANSAS", "BBQ Chicken Crescents", "Make it an easy weeknight win with a side of green beans.", "#d79a3c"], ["INDIANA", "Piggy Pop Party Mix", "Add crispy bacon & buttery popcorn to this Chex Party Mix.", "#c7843a"]] },
-  { title: "SOUTHWEST", bg: "#efe4d4", fg: "#9b7f66", recipes: [["NEW MEXICO", "Green Chile Chex Mix", "A zesty, spicy twist on classic Chex Party Mix.", "#d4a24a"], ["OKLAHOMA", "Sugar Cookie Bars", "Easy bars made with Betty Crocker Sugar Cookie mix.", "#d9b77a"], ["TEXAS", "Loaded Pizza Roll Nachos", "Game-day nachos piled high on Totino's Pizza Rolls.", "#c94a2a"]] },
+  { title: "NORTHEAST", banner: "https://advertising.walmart.com/thunder/assets/media-service/wcnp-prod/images/61c41d25-2109-4ca2-997f-db06d4a3148c/3b1570bb-9c3c-4c00-a914-7df0415918ac.jpeg", recipes: [["NEW JERSEY", "Everything Bagel Dogs", "Made easy with Pillsbury Crescents.", "#3b5a7a"], ["NEW YORK", "Buffalo Mac & Cheese", "Baked to perfection with chicken and Annie's Mac & Cheese.", "#e09a4a"], ["PENNSYLVANIA", "Cinnamon Roll Pie", "Put a spin on Dutch apple pie with Pillsbury Cinnamon Rolls.", "#8a5a3c"]] },
+  { title: "SOUTHEAST", banner: "https://advertising.walmart.com/thunder/assets/media-service/wcnp-prod/images/5030faf3-64ca-4d3f-90eb-b3bad801cfcb/80fc6696-1b2a-47f6-b100-bb1a4e4a71da.jpeg", recipes: [["GEORGIA", "Classic Peach Cobbler", "Bake up this sweet summer dessert with Bisquick.", "#e8a860"], ["VIRGINIA", "Hot Biscuit Sandwiches", "Layers of ham and Swiss cheese on Pillsbury Biscuits.", "#c99a5a"], ["FLORIDA", "Berry Key Lime Pie", "A fresh twist on a classic starts with Pillsbury pie crust.", "#d8394a"]] },
+  { title: "MIDWEST", banner: "https://advertising.walmart.com/thunder/assets/media-service/wcnp-prod/images/c85d1be8-bd7e-4dab-afd6-46d3fa0a1a05/0830c969-813c-4ea4-8e82-d5308b11778d.jpeg", recipes: [["MICHIGAN", "Classic Blueberry Pie", "Use Gold Medal All-Purpose Flour for this homemade pie.", "#3a3448"], ["KANSAS", "BBQ Chicken Crescents", "Make it an easy weeknight win with a side of green beans.", "#d79a3c"], ["INDIANA", "Piggy Pop Party Mix", "Add crispy bacon & buttery popcorn to this Chex Party Mix.", "#c7843a"]] },
+  { title: "SOUTHWEST", banner: "https://advertising.walmart.com/thunder/assets/media-service/wcnp-prod/images/c6b0ecbd-b6d9-47f5-acfe-f7d76ee28efe/348c86a9-2e40-4658-a3be-e3188479b29e.jpeg", recipes: [["NEW MEXICO", "Green Chile Chex Mix", "A zesty, spicy twist on classic Chex Party Mix.", "#d4a24a"], ["OKLAHOMA", "Sugar Cookie Bars", "Easy bars made with Betty Crocker Sugar Cookie mix.", "#d9b77a"], ["TEXAS", "Loaded Pizza Roll Nachos", "Game-day nachos piled high on Totino's Pizza Rolls.", "#c94a2a"]] },
 ];
 
 const nav = ["Rollbacks & More", "Get it Fast", "Pharmacy", "Halloween", "New Arrivals", "Holiday Shop", "Gifting", "Toy Shop", "Meals Made Easy", "Only at Walmart", "Credit Card", "Walmart+"];
@@ -112,18 +112,10 @@ function Shelf({ title, items }: { title: string; items: P[] }) {
   );
 }
 
-function Stripes({ color }: { color: string }) {
+function RegionBanner({ title, banner }: { title: string; banner: string }) {
   return (
-    <div className="absolute inset-0 opacity-25" style={{ backgroundImage: `repeating-linear-gradient(90deg, ${color} 0 6px, transparent 6px 14px)`, maskImage: "linear-gradient(180deg, #000 0 18%, transparent 18% 82%, #000 82%)", WebkitMaskImage: "linear-gradient(180deg, #000 0 18%, transparent 18% 82%, #000 82%)" }} />
-  );
-}
-
-function RegionBanner({ title, bg, fg }: { title: string; bg: string; fg: string }) {
-  return (
-    <div className="relative flex h-[clamp(110px,14vw,226px)] items-center overflow-hidden rounded-lg px-[5%]" style={{ background: bg }}>
-      <Stripes color={fg} />
-      <span className="relative mr-4 text-[clamp(24px,4.4vw,72px)]" style={{ fontFamily: "'Dancing Script', cursive", color: fg }}>Flavors from the</span>
-      <span className="relative -rotate-3 text-[clamp(44px,9vw,150px)] leading-none" style={{ fontFamily: "Anton, sans-serif", color: fg }}>{title}</span>
+    <div className="overflow-hidden rounded-lg">
+      <img src={banner} alt={`Flavors from the ${title}`} loading="lazy" className="w-full" />
     </div>
   );
 }
@@ -189,7 +181,7 @@ function Index() {
 
         {regions.map((r) => (
           <section key={r.title} className="space-y-6">
-            <RegionBanner title={r.title} bg={r.bg} fg={r.fg} />
+            <RegionBanner title={r.title} banner={r.banner} />
             <h2 className="text-[20px] font-bold">Explore recipes</h2>
             <div className="grid gap-6 md:grid-cols-3">
               {r.recipes.map(([s, t, d, c]) => <RecipeCard key={s} state={s!} title={t!} desc={d!} color={c!} />)}
