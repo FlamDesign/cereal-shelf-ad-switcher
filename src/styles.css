@@ -162,10 +162,10 @@
 .moment-video { width: 100%; height: 100%; object-fit: contain; background: var(--moment-black); }
 .moment-embed { width: 100%; height: 100%; border: 0; background: var(--moment-black); }
 .moment-badge { position: absolute; left: -3%; bottom: -6%; width: 47%; aspect-ratio: 1; transform: rotate(-10deg); filter: drop-shadow(0 4px 6px rgb(0 0 0 / 25%)); }
-.moment-nav { position: absolute; right: 6%; top: 70%; bottom: 1%; width: 50%; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: repeat(2,minmax(0,1fr)); gap: 4px 5px; }
+.moment-nav { position: absolute; right: 6%; top: 73%; bottom: 1%; width: 50%; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); grid-template-rows: repeat(2,minmax(0,1fr)); gap: 4px 5px; }
 .moment-nav .moment-button { width: 100%; height: 100%; min-width: 44px; min-height: 44px; padding: 0; gap: 2px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: transparent; border-radius: 0; color: var(--moment-ink); white-space: normal; font-family: 'Brandon Printed Two','Arial Black',sans-serif; }
 .moment-nav .moment-button:hover { background: transparent; }
-.moment-plate-wrap { display: grid; place-items: center; width: 19cqw; height: 19cqw; min-width: 56px; min-height: 56px; flex-shrink: 0; padding: 3px; border: 3px solid transparent; border-radius: 50%; }
+.moment-plate-wrap { display: grid; place-items: center; width: 17cqw; height: 17cqw; min-width: 56px; min-height: 56px; flex-shrink: 0; padding: 3px; border: 3px solid transparent; border-radius: 50%; }
 .moment-button[aria-pressed=true] .moment-plate-wrap { border-color: var(--moment-red); background: var(--moment-red); }
 .moment-plate { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; width: 100%; height: 100%; border-radius: 50%; background: var(--moment-plate); box-shadow: inset 0 0 0 3px var(--moment-cream), inset 0 0 0 4px var(--moment-rim), var(--moment-shadow); }
 .moment-nav .moment-icon { width: 46%; height: 46%; }
