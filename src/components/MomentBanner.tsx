@@ -227,34 +227,45 @@ function Desktop({ idx, auto, touched, cycle, pick }: S) {
   );
 }
 
-function Mobile({ idx, auto, touched, cycle, pick }: S) {
+function Mobile({ idx, auto, cycle, pick }: S) {
   const current = MOMENTS[idx]!;
+  const ref = useRef<HTMLElement>(null);
+  const [w, setW] = useState(360);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setW(el.clientWidth));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const u = w / 100; // 1% of unit width
+  const plate = Math.round(13 * u);
   return (
-    <section style={{ position: "relative", width: "100%", overflow: "hidden", background: "#2F5A1E", fontFamily: FONT, color: "#00463C" }}>
-      <img src={bg.url} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
-      <div style={{ position: "absolute", inset: 0, background: "rgba(0,40,20,.35)" }} />
-      <img src={a1.url} alt="" style={{ position: "absolute", left: "-8%", top: "-6vw", width: "80%", filter: shadow }} />
-      <img src={a2.url} alt="" style={{ position: "absolute", right: "-12%", top: "-4vw", width: "60%", transform: "rotate(6deg)", filter: shadow }} />
-      <img src={logo.url} alt="The Moment Maker" style={{ position: "absolute", left: "-5vw", top: "-6vw", width: "48vw", height: "48vw", transform: "rotate(-10deg)", filter: logoShadow, zIndex: 3 }} />
-      <div style={{ position: "relative", height: "38vw" }}>
-        {!touched && <div style={{ position: "absolute", right: 12, bottom: 10, zIndex: 4 }}><Hint /></div>}
-      </div>
-      <div style={{ position: "relative", zIndex: 2, padding: "0 10px" }}>
-        <div style={{ width: "100%", aspectRatio: "1/1", background: "#000", borderRadius: 8, overflow: "hidden", boxShadow: "0 12px 30px rgba(0,0,0,.5)" }}>
+    <div style={{ padding: "0 12px" }}>
+      <section ref={ref} style={{ position: "relative", width: "100%", aspectRatio: "3/4", overflow: "hidden", background: "#2F5A1E", fontFamily: FONT, color: "#00463C" }}>
+        <img src={bg.url} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }} />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(0,40,20,.25)" }} />
+        <img src={a1.url} alt="" style={{ position: "absolute", left: -20 * u, top: -14 * u, width: 70 * u, filter: shadow }} />
+        <img src={a2.url} alt="" style={{ position: "absolute", right: -14 * u, top: -6 * u, width: 50 * u, transform: "rotate(8deg)", filter: shadow }} />
+        <img src={a3.url} alt="" style={{ position: "absolute", right: -22 * u, bottom: -22 * u, width: 70 * u, transform: "rotate(-30deg)", filter: shadow }} />
+        <img src={a5.url} alt="" style={{ position: "absolute", left: -2 * u, top: 42 * u, width: 8 * u }} />
+        <img src={a6.url} alt="" style={{ position: "absolute", right: -2 * u, top: 36 * u, width: 8 * u }} />
+        <img src={a7.url} alt="" style={{ position: "absolute", left: 46 * u, bottom: 2 * u, width: 7 * u }} />
+        <div style={{ position: "absolute", left: 4.5 * u, top: 4.5 * u, width: 91 * u, height: 91 * u, background: "#000", borderRadius: 4, overflow: "hidden", boxShadow: "0 10px 24px rgba(0,0,0,.45)", zIndex: 5 }}>
           <iframe key={current.id} src={current.src} title={current.label} style={{ width: "100%", height: "100%", border: 0 }} allow="autoplay; fullscreen" />
         </div>
-        <nav aria-label="Pick your moment" style={{ display: "grid", gridTemplateColumns: "repeat(4,minmax(0,1fr))", gap: 4, padding: "12px 0 16px", alignItems: "start" }}>
+        <img src={logo.url} alt="The Moment Maker" style={{ position: "absolute", left: 1 * u, top: 97 * u, width: 46 * u, height: 46 * u, transform: "rotate(-10deg)", filter: logoShadow, zIndex: 4 }} />
+        <nav aria-label="Pick your moment" style={{ position: "absolute", right: 3 * u, top: 97 * u, width: 42 * u, height: 35 * u, display: "grid", gridTemplateColumns: "repeat(2,1fr)", gridTemplateRows: "repeat(2,1fr)", alignItems: "center", justifyItems: "center", zIndex: 6 }}>
           {MOMENTS.map((m, i) => {
             const on = i === idx;
             return (
-              <button key={m.id} className="mm-btn" onClick={() => pick(i)} aria-pressed={on} aria-label={m.label} style={{ display: "flex", flexDirection: "column", alignItems: "center", minHeight: 44, fontFamily: FONT }}>
-                <Plate m={m} size={on ? 74 : 66} on={on} auto={auto} cycle={cycle} />
-                <Label m={m} on={on} fs={12} wrap />
+              <button key={m.id} className="mm-btn" onClick={() => pick(i)} aria-pressed={on} aria-label={m.label} style={{ minWidth: 44, minHeight: 44, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <Plate m={m} size={on ? plate : Math.round(plate * 0.9)} on={on} auto={auto} cycle={cycle} />
               </button>
             );
           })}
         </nav>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
