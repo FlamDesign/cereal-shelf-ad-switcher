@@ -69,7 +69,7 @@ export const MOMENTS: Moment[] = [
   { id: "on-the-road", label: "On the road", tilt: 3, icon: icons["on-the-road"], src: "/ads/on-the-road.html", aspect: "1/1" },
 ];
 
-function Circle({ m, size, inner }: { m: Moment; size: number; inner?: boolean }) {
+function Circle({ m, size, inner }: { m: Moment; size: number; inner?: boolean | undefined }) {
   const r = size / 118;
   return (
     <span
