@@ -6,11 +6,15 @@ export function WireframeBackground({ children }: { children: ReactNode }) {
     <div className="wf-page">
       <div className="wf-column">
         <div className="wf-top" aria-hidden="true">
+          <div className="wf-cards">{[0, 1, 2].map((i) => <div key={i}><span className="wf-img" /><span style={{ width: "70%" }} /></div>)}</div>
+          <div className="wf-row wf-center"><span className="wf-avatar" /><div className="wf-lines"><span style={{ width: "70%" }} /><span style={{ width: "40%" }} /></div></div>
           <div className="wf-bar">
             <div className="wf-burger"><i /><i /><i /></div>
             <div className="wf-bar-pills"><span className="wf-pill wf-dark wf-w-lg" /><span className="wf-pill wf-light wf-w-sm" /></div>
           </div>
           <div className="wf-search" />
+          <div className="wf-stories">{[0, 1, 2, 3, 4].map((i) => <span key={i} className={i === 0 ? "wf-dark" : ""} />)}</div>
+          <div className="wf-bar"><span className="wf-pill wf-light wf-w-lg wf-short" /><span className="wf-pill wf-light wf-w-sm wf-short" /></div>
         </div>
         <div className="wf-slot">{children}</div>
         <div className="wf-bottom" aria-hidden="true">
@@ -25,6 +29,8 @@ export function WireframeBackground({ children }: { children: ReactNode }) {
           </div>
           <div className="wf-input"><b>+</b><span /></div>
           <div className="wf-cards">{[0, 1, 2].map((i) => <div key={i}><span className="wf-img" /><span style={{ width: "85%" }} /><span style={{ width: "55%" }} /></div>)}</div>
+          <div className="wf-bar"><span className="wf-pill wf-light wf-w-lg wf-short" /><span className="wf-pill wf-light wf-w-sm wf-short" /></div>
+          {[0, 1].map((i) => <div key={i} className="wf-row wf-center"><span className="wf-thumb wf-thumb-sm" /><div className="wf-lines"><span style={{ width: "85%" }} /><span style={{ width: "50%" }} /></div></div>)}
           <div className="wf-tall" />
         </div>
       </div>

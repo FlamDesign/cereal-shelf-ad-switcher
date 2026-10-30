@@ -211,3 +211,7 @@
 .moment-button[aria-pressed=false] .moment-badge-img { filter: saturate(0.6) brightness(0.75); }
 @media (hover:hover) { .moment-button[aria-pressed=false]:hover .moment-plate-wrap { transform: scale(0.9) translateY(-2px); } }
 @media (prefers-reduced-motion:no-preference) { .moment-badge-img { transition: filter .2s ease; } }
+.wf-stories { display: flex; justify-content: space-between; flex-shrink: 0; }
+.wf-stories span { width: 56px; height: 56px; border-radius: 50%; background: #EDEDED; border: 3px solid #E5E5E5; }
+.wf-short { height: 14px; }
+.wf-thumb-sm { width: 56px; height: 56px; }
