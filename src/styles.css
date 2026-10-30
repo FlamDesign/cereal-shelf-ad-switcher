@@ -205,5 +205,5 @@
 .wf-cards > div { display: flex; flex-direction: column; gap: 8px; padding: 10px; border-radius: 12px; background: #F2F2F2; }
 .wf-img { display: block; height: 40px; border-radius: 8px; background: #E5E5E5; }
 .wf-tall { height: 90px; border-radius: 18px; background: #EDEDED; flex-shrink: 0; }
-.moment-frame::before { content: ""; position: absolute; inset: 0; background: rgb(0 0 0 / 45%); pointer-events: none; z-index: 0; }
+.moment-frame::before { content: ""; position: absolute; inset: 0; background: rgb(0 0 0 / 60%); pointer-events: none; z-index: 0; }
 .moment-frame > * { z-index: 1; }
