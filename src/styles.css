@@ -208,6 +208,6 @@
 .moment-frame::before { content: ""; position: absolute; inset: 0; background: rgb(0 0 0 / 60%); pointer-events: none; z-index: 0; }
 .moment-frame > * { z-index: 1; }
 .moment-button[aria-pressed=false] .moment-plate-wrap { transform: scale(0.9); }
-.moment-button[aria-pressed=false] .moment-badge-img { filter: grayscale(1); }
+.moment-button[aria-pressed=false] .moment-badge-img { filter: saturate(0.6) brightness(0.75); }
 @media (hover:hover) { .moment-button[aria-pressed=false]:hover .moment-plate-wrap { transform: scale(0.9) translateY(-2px); } }
 @media (prefers-reduced-motion:no-preference) { .moment-badge-img { transition: filter .2s ease; } }
